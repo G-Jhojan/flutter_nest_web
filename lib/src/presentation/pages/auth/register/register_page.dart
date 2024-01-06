@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_textfield.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class LoginPage extends StatelessWidget {
             Center(
               child: Container(
                 //constraints: BoxConstraints(maxWidth: 450, maxHeight: 700),
-                width: 450,//MediaQuery.of(context).size.width * 0.45,
-                height:MediaQuery.of(context).size.height * 0.55,
+                width: 475,//MediaQuery.of(context).size.width * 0.45,
+                height:MediaQuery.of(context).size.height * 0.8,
                 decoration: BoxDecoration(
                   color: Color(0xB20B191E),
                   borderRadius: BorderRadius.circular(25),
@@ -43,12 +43,12 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Icon(
-                      Icons.account_circle,
+                      Icons.add_a_photo_outlined,
                       size: 100,
                       color: Colors.white,
                     ),
                     Text(
-                      '¡BIENVENIDO!',
+                      'CREAR CUENTA',
                       style: GoogleFonts.outfit(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -61,8 +61,8 @@ class LoginPage extends StatelessWidget {
                       horizontal: 40, vertical: 10
                        ),
                      child: DefaultTextField(
-                        label: 'Correo',
-                        icon: Icons.email_outlined,
+                        label: 'Nombre',
+                        icon: Icons.person_outline,
                         onChanged: (text) {
                           print('Text: $text');
                         },
@@ -73,9 +73,40 @@ class LoginPage extends StatelessWidget {
                       horizontal: 40, vertical: 10
                       ),
                      child: DefaultTextField(
+                        label: 'Apellido',
+                        icon: Icons.person,
+                        onChanged: (text) {},
+                     )
+                   ),
+                   Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 10
+                      ),
+                     child: DefaultTextField(
+                        label: 'Correo',
+                        icon: Icons.email_outlined,
+                        onChanged: (text) {},
+                     )
+                   ),
+                   Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 10
+                      ),
+                     child: DefaultTextField(
                         label: 'Contraseña',
                         icon: Icons.lock_outlined,
-                        obscureText: true,
+                        //obscureText: true,
+                        onChanged: (text) {},
+                     )
+                   ),
+                   Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 10
+                      ),
+                     child: DefaultTextField(
+                        label: 'Confirmar Contraseña',
+                        icon: Icons.lock,
+                        //obscureText: true,
                         onChanged: (text) {},
                      )
                    ),
@@ -92,10 +123,10 @@ class LoginPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        child:  Text('INICIAR SESIÓN', style: GoogleFonts.outfit(fontSize: 15, color: Colors.white))
+                        child:  Text('REGÍSTRAME', style: GoogleFonts.outfit(fontSize: 15, color: Colors.white))
                       ),
                   ),
-                   Text("¿No tienes cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
+                   Text("¿Ya tienes una cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
                     Container(
                        margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                       width: MediaQuery.of(context).size.width * 0.5,
@@ -104,9 +135,9 @@ class LoginPage extends StatelessWidget {
                           style: TextButton.styleFrom(
                             foregroundColor: Color.fromRGBO(128, 0, 32, 100)),
                           onPressed: () {
-                            Navigator.pushNamed(context, 'register');
+                            Navigator.pushNamed(context, 'login');
                           },
-                          child:  Text('REGÍSTRATE', style: GoogleFonts.outfit(fontSize: 15, fontWeight: FontWeight.w600, color: Color.fromRGBO(228, 102, 124, 100))),
+                          child:  Text('INICIAR SESIÓN', style: GoogleFonts.outfit(fontSize: 15, fontWeight: FontWeight.w600, color: Color.fromRGBO(228, 102, 124, 100))),
                         ),
                     ),
                   ],
