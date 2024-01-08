@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nest/src/presentation/widgets/default_textfield.dart';
+import 'package:flutter_nest/src/presentation/widgets/default_button.dart';
+import 'package:flutter_nest/src/presentation/widgets/default_text_field.dart';
+import 'package:flutter_nest/src/presentation/widgets/no_color_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
@@ -38,78 +40,74 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.account_circle,
-                      size: 100,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      '¡BIENVENIDO!',
-                      style: GoogleFonts.outfit(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                       ),
-                     child: DefaultTextField(
-                        label: 'Correo',
-                        icon: Icons.email_outlined,
-                        onChanged: (text) {
-                          print('Text: $text');
-                        },
-                     )
-                   ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                      ),
-                     child: DefaultTextField(
-                        label: 'Contraseña',
-                        icon: Icons.lock_outlined,
-                        obscureText: true,
-                        onChanged: (text) {},
-                     )
-                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: 40,
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Color(0x72A5B0BE),
-                          backgroundColor: Color.fromRGBO(128, 0, 32, 100),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                child: SingleChildScrollView(
+                  child: Center(
+                    heightFactor: 1.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.account_circle,
+                          size: 100,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          '¡BIENVENIDO!',
+                          style: GoogleFonts.outfit(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                        child:  Text('INICIAR SESIÓN', style: GoogleFonts.outfit(fontSize: 15, color: Colors.white))
+
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                           ),
+                         child: DefaultTextField(
+                            label: 'Correo',
+                            icon: Icons.email_outlined,
+                            onChanged: (text) {
+                              print('Text: $text');
+                            },
+                         )
+                       ),
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                          ),
+                         child: DefaultTextField(
+                            label: 'Contraseña',
+                            icon: Icons.lock_outlined,
+                            obscureText: true,
+                            onChanged: (text) {},
+                         )
+                       ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: 40,
+                        child: DefaultButton(
+                            text: 'Iniciar Sesión',
+                            onPressed: (){},
+                        )
                       ),
-                  ),
-                   Text("¿No tienes cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
-                    Container(
-                       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: 40,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                            foregroundColor: Color.fromRGBO(128, 0, 32, 100)),
-                          onPressed: () {
-                            Navigator.pushNamed(context, 'register');
-                          },
-                          child:  Text('REGÍSTRATE', style: GoogleFonts.outfit(fontSize: 15, fontWeight: FontWeight.w600, color: Color.fromRGBO(228, 102, 124, 100))),
+                       Text("¿No tienes cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
+                        Container(
+                           margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          height: 40,
+                          child: NoColorButton(
+                              text: 'CREA UNA CUENTA',
+                              onPressed: (){
+                                Navigator.pushNamed(context, 'register');
+                              },
+                          )
                         ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

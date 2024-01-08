@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nest/src/presentation/widgets/default_textfield.dart';
+import 'package:flutter_nest/src/presentation/widgets/default_button.dart';
+import 'package:flutter_nest/src/presentation/widgets/default_text_field.dart';
+import 'package:flutter_nest/src/presentation/widgets/no_color_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -38,109 +40,106 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.add_a_photo_outlined,
-                      size: 100,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'CREAR CUENTA',
-                      style: GoogleFonts.outfit(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                       ),
-                     child: DefaultTextField(
-                        label: 'Nombre',
-                        icon: Icons.person_outline,
-                        onChanged: (text) {
-                          print('Text: $text');
-                        },
-                     )
-                   ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                      ),
-                     child: DefaultTextField(
-                        label: 'Apellido',
-                        icon: Icons.person,
-                        onChanged: (text) {},
-                     )
-                   ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                      ),
-                     child: DefaultTextField(
-                        label: 'Correo',
-                        icon: Icons.email_outlined,
-                        onChanged: (text) {},
-                     )
-                   ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                      ),
-                     child: DefaultTextField(
-                        label: 'Contraseña',
-                        icon: Icons.lock_outlined,
-                        //obscureText: true,
-                        onChanged: (text) {},
-                     )
-                   ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 40, vertical: 10
-                      ),
-                     child: DefaultTextField(
-                        label: 'Confirmar Contraseña',
-                        icon: Icons.lock,
-                        //obscureText: true,
-                        onChanged: (text) {},
-                     )
-                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: 40,
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Color(0x72A5B0BE),
-                          backgroundColor: Color.fromRGBO(128, 0, 32, 100),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                child: SingleChildScrollView(
+                  child: Center(
+                    //widthFactor: 2,
+                    heightFactor: 1.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.add_a_photo_outlined,
+                          size: 100,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          'CREAR CUENTA',
+                          style: GoogleFonts.outfit(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                        child:  Text('REGÍSTRAME', style: GoogleFonts.outfit(fontSize: 15, color: Colors.white))
+
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                           ),
+                         child: DefaultTextField(
+                            label: 'Nombre',
+                            icon: Icons.person_outline,
+                            onChanged: (text) {
+                              print('Text: $text');
+                            },
+                         )
+                       ),
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                          ),
+                         child: DefaultTextField(
+                            label: 'Apellido',
+                            icon: Icons.person,
+                            onChanged: (text) {},
+                         )
+                       ),
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                          ),
+                         child: DefaultTextField(
+                            label: 'Correo',
+                            icon: Icons.email_outlined,
+                            onChanged: (text) {},
+                         )
+                       ),
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                          ),
+                         child: DefaultTextField(
+                            label: 'Contraseña',
+                            icon: Icons.lock_outlined,
+                            //obscureText: true,
+                            onChanged: (text) {},
+                         )
+                       ),
+                       Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10
+                          ),
+                         child: DefaultTextField(
+                            label: 'Confirmar Contraseña',
+                            icon: Icons.lock,
+                            //obscureText: true,
+                            onChanged: (text) {},
+                         )
+                       ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: 40,
+                        child: DefaultButton(
+                            text: 'Regístrame',
+                            onPressed: (){},
+                        )
                       ),
-                  ),
-                   Text("¿Ya tienes una cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
-                    Container(
-                       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: 40,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                            foregroundColor: Color.fromRGBO(128, 0, 32, 100)),
-                          onPressed: () {
-                            Navigator.pushNamed(context, 'login');
-                          },
-                          child:  Text('INICIAR SESIÓN', style: GoogleFonts.outfit(fontSize: 15, fontWeight: FontWeight.w600, color: Color.fromRGBO(228, 102, 124, 100))),
+                       Text("¿Ya tienes una cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
+                        Container(
+                           margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          height: 40,
+                          child: NoColorButton(
+                              text: 'INICIAR SESIÓN',
+                              onPressed: (){
+                                Navigator.pushNamed(context, 'login');
+                              },
+                          )
                         ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
