@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_button.dart';
+import 'package:flutter_nest/src/presentation/widgets/default_icon_back.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_text_field.dart';
 import 'package:flutter_nest/src/presentation/widgets/no_color_button.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,11 +25,15 @@ class RegisterPage extends StatelessWidget {
               color: Colors.black54,
               colorBlendMode: BlendMode.darken,
             ),
+            DefaultIconBack(
+              left: 80,
+              top: 40,
+            ),
             Center(
               child: Container(
                 //constraints: BoxConstraints(maxWidth: 450, maxHeight: 700),
                 width: 475,//MediaQuery.of(context).size.width * 0.45,
-                height:MediaQuery.of(context).size.height * 0.8,
+                height:MediaQuery.of(context).size.height * 0.9,
                 decoration: BoxDecoration(
                   color: Color(0xB20B191E),
                   borderRadius: BorderRadius.circular(25),
@@ -43,7 +48,7 @@ class RegisterPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Center(
                     //widthFactor: 2,
-                    heightFactor: 1.3,
+                    heightFactor: 1.1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
