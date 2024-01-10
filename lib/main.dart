@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:oktoast/oktoast.dart';
 import 'src/presentation/pages/auth/login/login_bloc_cubit.dart';
 import 'src/presentation/pages/auth/login/login_page.dart';
 import 'src/presentation/pages/auth/register/register_page.dart';
@@ -11,19 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginBlocCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          useMaterial3: true,
+    return OKToast(
+      child: BlocProvider(
+        create: (context) => LoginBlocCubit(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+            useMaterial3: true,
+          ),
+          initialRoute: 'login',
+          routes: {
+            'login': (context) => const LoginPage(),
+            'register': (context) => const RegisterPage(),
+          },
         ),
-        initialRoute: 'login',
-        routes: {
-          'login': (context) => const LoginPage(),
-          'register': (context) => const RegisterPage(),
-        },
       ),
     );
   }

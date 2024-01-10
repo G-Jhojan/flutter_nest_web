@@ -5,7 +5,7 @@ class DefaultButton extends StatelessWidget {
   const DefaultButton({
     super.key,
     required this.text,
-    required this.onPressed
+    required this.onPressed,
     });
 
   final String text;

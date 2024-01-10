@@ -5,6 +5,7 @@ import 'package:flutter_nest/src/presentation/widgets/default_button.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_text_field.dart';
 import 'package:flutter_nest/src/presentation/widgets/no_color_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oktoast/oktoast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,8 +19,11 @@ class _LoginPageState extends State<LoginPage> {
   LoginBlocCubit? _loginBlocCubit;
 
   @override
-  void initState() {
+  void initState() {// se jecuta una sola vez cuando carga la pantalla
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loginBlocCubit?.dispose();
+    });
 
   }
 
@@ -119,14 +123,35 @@ class _LoginPageState extends State<LoginPage> {
                         margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 40,
-                        child: DefaultButton(
-                            text: 'Iniciar Sesión',
-                            onPressed: (){
-                              _loginBlocCubit?.login();
-                            },
+                        child: StreamBuilder(
+                          stream: _loginBlocCubit?.validateForm,
+                          builder: (context, snapshot) {
+                            return OKToast(
+                              child: DefaultButton(
+                                  text: 'Iniciar Sesión',
+                                  onPressed: (){
+                                  if(snapshot.hasData){
+                                    _loginBlocCubit?.login();
+                                  } else{
+                                   showToast(
+                                      "¡Campos no validos!",
+                                      duration: Duration(seconds: 2),
+                                      position: ToastPosition.bottom,
+                                      backgroundColor: Colors.white,
+                                      radius: 10.0,
+                                      textStyle: GoogleFonts.robotoCondensed(fontSize: 18.0),
+                                    );
+                                  }
+                                },
+                              ),
+                            );
+                          }
                         )
                       ),
-                       Text("¿No tienes cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
+                       Text("¿No tienes cuenta?",
+                       style: GoogleFonts.outfit(
+                        fontSize: 15,
+                        color: Colors.grey)),
                         Container(
                            margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                           width: MediaQuery.of(context).size.width * 0.5,
@@ -134,8 +159,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: NoColorButton(
                               text: 'CREA UNA CUENTA',
                               onPressed: (){
-                                Navigator.pushNamed(context, 'register');
-                              },
+                              Navigator.pushNamed(context, 'register');
+                            }
                           )
                         ),
                       ],
