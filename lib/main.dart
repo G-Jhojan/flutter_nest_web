@@ -6,6 +6,8 @@ import 'src/presentation/pages/auth/login/login_page.dart';
 import 'src/presentation/pages/auth/register/register_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'src/providers/bloc_providers.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,8 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OKToast(
-      child: BlocProvider(
-        create: (context) => LoginBlocCubit(),
+      child: MultiBlocProvider(
+        providers: blocProviders,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

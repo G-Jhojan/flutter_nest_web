@@ -1,15 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_nest/src/presentation/pages/auth/register/register_bloc_cubit.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_button.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_icon_back.dart';
 import 'package:flutter_nest/src/presentation/widgets/default_text_field.dart';
 import 'package:flutter_nest/src/presentation/widgets/no_color_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oktoast/oktoast.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+
+  RegisterBlocCubit? _registerBlocCubit;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _registerBlocCubit!.dispose();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    _registerBlocCubit = BlocProvider.of<RegisterBlocCubit>(context, listen : false);
+
     return  Scaffold(
       body: Container(
         width: double.infinity,
@@ -54,7 +78,7 @@ class RegisterPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Icon(
-                          Icons.add_a_photo_outlined,
+                          Icons.person_add_rounded,
                           size: 100,
                           color: Colors.white,
                         ),
@@ -71,63 +95,114 @@ class RegisterPage extends StatelessWidget {
                         margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10
                            ),
-                         child: DefaultTextField(
-                            label: 'Nombre',
-                            icon: Icons.person_outline,
-                            onChanged: (text) {
-                              print('Text: $text');
-                            },
+                         child: StreamBuilder(
+                           stream: _registerBlocCubit?.nameStream,
+                           builder: (context, snapshot) {
+                             return DefaultTextField(
+                                label: 'Nombre',
+                                icon: Icons.person_outline,
+                                onChanged: (text) {
+                                  _registerBlocCubit?.changeName(text);
+                                },
+                             );
+                           }
                          )
                        ),
                        Container(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10
                           ),
-                         child: DefaultTextField(
-                            label: 'Apellido',
-                            icon: Icons.person,
-                            onChanged: (text) {},
+                         child: StreamBuilder(
+                           stream: _registerBlocCubit?.lastNameStream,
+                           builder: (context, snapshot) {
+                             return DefaultTextField(
+                                label: 'Apellido',
+                                icon: Icons.person,
+                                onChanged: (text) {
+                                  _registerBlocCubit?.changeLastName(text);
+                                },
+                             );
+                           }
                          )
                        ),
                        Container(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10
                           ),
-                         child: DefaultTextField(
-                            label: 'Correo',
-                            icon: Icons.email_outlined,
-                            onChanged: (text) {},
+                         child: StreamBuilder(
+                           stream: _registerBlocCubit?.emailStream,
+                           builder: (context, snapshot) {
+                             return DefaultTextField(
+                                label: 'Correo',
+                                icon: Icons.email_outlined,
+                                onChanged: (text) {
+                                  _registerBlocCubit?.changeEmail(text);
+                                },
+                             );
+                           }
                          )
                        ),
                        Container(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10
                           ),
-                         child: DefaultTextField(
-                            label: 'Contraseña',
-                            icon: Icons.lock_outlined,
-                            //obscureText: true,
-                            onChanged: (text) {},
+                         child: StreamBuilder(
+                           stream: _registerBlocCubit?.passwordStream,
+                           builder: (context, snapshot) {
+                             return DefaultTextField(
+                                label: 'Contraseña',
+                                icon: Icons.lock_outlined,
+                                onChanged: (text) {
+                                  _registerBlocCubit?.changePassword(text);
+                                },
+                             );
+                           }
                          )
                        ),
                        Container(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10
                           ),
-                         child: DefaultTextField(
-                            label: 'Confirmar Contraseña',
-                            icon: Icons.lock,
-                            //obscureText: true,
-                            onChanged: (text) {},
+                         child: StreamBuilder(
+                           stream: _registerBlocCubit?.confirmPasswordStream,
+                           builder: (context, snapshot) {
+                             return DefaultTextField(
+                                label: 'Confirmar Contraseña',
+                                icon: Icons.lock,
+                                onChanged: (text) {
+                                  _registerBlocCubit?.changeConfirmPassword(text);
+                                },
+                             );
+                           }
                          )
                        ),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 40,
-                        child: DefaultButton(
-                            text: 'Regístrame',
-                            onPressed: (){},
+                        child: StreamBuilder(
+                          stream: _registerBlocCubit?.validateForm,
+                          builder: (context, snapshot) {
+                            return OKToast(
+                              child: DefaultButton(
+                                  text: 'Regístrame',
+                                  onPressed: (){
+                                    if(snapshot.hasData){
+                                      _registerBlocCubit?.register();
+                                    } else {
+                                        showToast(
+                                        "¡Campos no validos!",
+                                        duration: Duration(seconds: 2),
+                                        position: ToastPosition.bottom,
+                                        backgroundColor: Colors.white,
+                                        radius: 10.0,
+                                        textStyle: GoogleFonts.robotoCondensed(fontSize: 18.0),
+                                      );
+                                    }
+                                  },
+                              ),
+                            );
+                          }
                         )
                       ),
                        Text("¿Ya tienes una cuenta?", style: GoogleFonts.outfit(fontSize: 15, color: Colors.grey)),
