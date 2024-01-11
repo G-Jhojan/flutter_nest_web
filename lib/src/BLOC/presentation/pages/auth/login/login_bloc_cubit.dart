@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nest/src/presentation/pages/auth/login/login_bloc_state.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'login_bloc_state.dart';
 
 class LoginBlocCubit extends Cubit<LoginBlocState>{
 

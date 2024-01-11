@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nest/src/presentation/pages/auth/login/login_bloc_cubit.dart';
-import 'package:flutter_nest/src/presentation/widgets/default_button.dart';
-import 'package:flutter_nest/src/presentation/widgets/default_text_field.dart';
-import 'package:flutter_nest/src/presentation/widgets/no_color_button.dart';
+import 'package:flutter_nest/src/BLOC/presentation/widgets/default_button.dart';
+import 'package:flutter_nest/src/BLOC/presentation/widgets/default_text_field.dart';
+import 'package:flutter_nest/src/BLOC/presentation/widgets/no_color_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oktoast/oktoast.dart';
+
+import 'login_bloc_cubit.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
