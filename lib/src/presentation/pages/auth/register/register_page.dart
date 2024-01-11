@@ -99,6 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                            stream: _registerBlocCubit?.nameStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Nombre',
                                 icon: Icons.person_outline,
                                 onChanged: (text) {
@@ -116,6 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                            stream: _registerBlocCubit?.lastNameStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Apellido',
                                 icon: Icons.person,
                                 onChanged: (text) {
@@ -133,6 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                            stream: _registerBlocCubit?.emailStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Correo',
                                 icon: Icons.email_outlined,
                                 onChanged: (text) {
@@ -150,6 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                            stream: _registerBlocCubit?.passwordStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Contraseña',
                                 icon: Icons.lock_outlined,
                                 onChanged: (text) {
@@ -167,6 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                            stream: _registerBlocCubit?.confirmPasswordStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Confirmar Contraseña',
                                 icon: Icons.lock,
                                 onChanged: (text) {

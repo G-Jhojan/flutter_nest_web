@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                            stream: _loginBlocCubit?.emailStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Correo',
                                 icon: Icons.email_outlined,
                                 onChanged: (text) {
@@ -109,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                            stream: _loginBlocCubit?.passwordStream,
                            builder: (context, snapshot) {
                              return DefaultTextField(
+                                errorText: snapshot.error?.toString(),
                                 label: 'Contraseña',
                                 icon: Icons.lock_outlined,
                                 obscureText: true,

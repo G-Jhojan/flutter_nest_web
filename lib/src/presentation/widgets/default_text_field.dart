@@ -9,9 +9,12 @@ class DefaultTextField extends StatelessWidget {
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
+    this.errorText,
+
   });
 
   final String label;
+  final String? errorText;
   final IconData icon;
   final Function (String text) onChanged;
   final bool obscureText;
@@ -25,6 +28,7 @@ class DefaultTextField extends StatelessWidget {
      style: TextStyle(color: Colors.white),
      obscureText: obscureText,
      decoration: InputDecoration(
+      errorText: errorText,
        labelStyle: GoogleFonts.outfit(color: Colors.white),
        hintText: label,
        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
